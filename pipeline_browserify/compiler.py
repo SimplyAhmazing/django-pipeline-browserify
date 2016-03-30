@@ -16,9 +16,9 @@ class BrowserifyCompiler(SubProcessCompiler):
             return
         pipeline_settings = getattr(settings, 'PIPELINE', {})
         command = "%s %s %s %s -o %s" % (
-            getattr(pipeline_settings, 'BROWSERIFY_VARS', ''),
-            getattr(pipeline_settings, 'BROWSERIFY_BINARY', '/usr/bin/env browserify'),
-            getattr(pipeline_settings, 'BROWSERIFY_ARGUMENTS', ''),
+            pipeline_settings.get('BROWSERIFY_VARS', ''),
+            pipeline_settings.get('BROWSERIFY_BINARY', '/usr/bin/env browserify'),
+            pipeline_settings.get('BROWSERIFY_ARGUMENTS', ''),
             infile,   
             outfile,
         )
